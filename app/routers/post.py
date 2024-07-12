@@ -71,7 +71,7 @@ def update_post(id: int, updated_post: schemas.PostCreate, db: Session = Depends
     # conn.commit()
 
     post_query = db.query(models.Post).filter(models.Post.id == id)
-    post = post_query.first
+    post = post_query.first()
     if post == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"post with id: {id} does not exist")
     
